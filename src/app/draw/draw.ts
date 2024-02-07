@@ -5,32 +5,41 @@ import { FoodModel } from '../models/food.model';
 import { WallModel } from '../models/wall.model';
 import { MaterialEnum } from '../enum/material.enum';
 import { StatusGame } from '../enum/statusGame.enum';
+import { StatusGameInterface } from '../interface/statusGame';
 export class Draw{
   
+  public static statusGame: StatusGameInterface = {
+    points: 0,
+    status: StatusGame.RUN
+  }
   
   public static scene = new THREE.Scene();
-  public static camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  public static renderer = new THREE.WebGLRenderer();
+  public static camera : THREE.PerspectiveCamera;
+
+  public static renderer: THREE.WebGLRenderer;
   
   private static wormModel = new WormModel();
   private static foodModel = new FoodModel();
   private static wallModel = new WallModel();
-
-  private static statusGame = StatusGame.RUN;
 
   // Time
   private static time = 0;
 
   private constructor(){}
 
-  public static config = () => {
+  public static config = (data: {
+    canvas:HTMLCanvasElement
+  }) => {
     
-    this.renderer.setSize( window.innerWidth, window.innerHeight );
-    
-    document.body.appendChild(Draw.renderer.domElement);
+    // this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    this.camera = new THREE.PerspectiveCamera(75, data.canvas.width / data.canvas.height, 0.1, 1000 );
 
+    this.renderer = new THREE.WebGLRenderer({canvas: data.canvas, antialias: true});
+
+    // this.renderer.setSize( window.innerWidth, window.innerHeight );
+    this.renderer.setSize( data.canvas.width, data.canvas.height );
+    
     this.camera.position.z = 22;
-
 
     window.addEventListener('resize', () => {
       
@@ -58,7 +67,7 @@ export class Draw{
   public static draw = () => {
     
     requestAnimationFrame( this.draw );
-    if (this.statusGame === StatusGame.RUN){
+    if (this.statusGame.status === StatusGame.RUN){
 
       this.time++;
 
@@ -70,6 +79,7 @@ export class Draw{
           this.wormModel.eating(this.foodModel.food.getPosition());
           this.scene.add(this.wormModel.getWorm()[0].cube);
           this.foodModel.generateFood(this.wormModel);
+          this.statusGame.points = this.statusGame.points + 10;
         }
         if (this.wormModel.isCollision(
           [
@@ -77,7 +87,7 @@ export class Draw{
             ...this.wormModel.getWorm().filter((worm) => worm.getMaterial() === MaterialEnum.BODY).map(_ => _.getPosition())
           ]
         )){
-          this.statusGame = StatusGame.GAMEOVER;
+          this.statusGame.status = StatusGame.GAMEOVER;
         }
   
       }

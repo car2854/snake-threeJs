@@ -21,7 +21,6 @@ export class FoodModel{
   public generateFood = (wormModel: WormModel) => {
     // -14 ----- 14
     let num = this.generateNumber(1,841);
-    console.log(num);
     
     let complete = false;
 
