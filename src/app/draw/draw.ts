@@ -62,14 +62,14 @@ export class Draw{
 
       this.time++;
 
-      if (this.time === 15){
+      if (this.time === 5){
         this.wormModel.moveWorm();
         this.time = 0;
         
         if (this.wormModel.isCollision([this.foodModel.food.getPosition()])){
           this.wormModel.eating(this.foodModel.food.getPosition());
           this.scene.add(this.wormModel.getWorm()[0].cube);
-          this.foodModel.generateFood();
+          this.foodModel.generateFood(this.wormModel);
         }
         if (this.wormModel.isCollision(
           [
@@ -77,7 +77,6 @@ export class Draw{
             ...this.wormModel.getWorm().filter((worm) => worm.getMaterial() === MaterialEnum.BODY).map(_ => _.getPosition())
           ]
         )){
-          console.log('collision');
           this.statusGame = StatusGame.GAMEOVER;
         }
   

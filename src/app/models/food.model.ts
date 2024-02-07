@@ -2,6 +2,7 @@ import { MaterialEnum } from "../enum/material.enum";
 import { SquareModel } from "./square.model";
 
 import * as THREE from 'three';
+import { WormModel } from "./worm.model";
 
 export class FoodModel{
   
@@ -17,10 +18,28 @@ export class FoodModel{
     });
   }
 
-  public generateFood = () => {
-    const x = this.generateNumber(-14,14);
-    const y = this.generateNumber(-14,14);
-    this.food.reemplazePosition(new THREE.Vector3(x,y,0));
+  public generateFood = (wormModel: WormModel) => {
+    // -14 ----- 14
+    let num = this.generateNumber(1,841);
+    console.log(num);
+    
+    let complete = false;
+
+    do {
+      for (let i = -14; i <= 14 && !complete; i++) {
+        for (let j = -14; j <= 14 && !complete; j++) {
+          num--;
+          if (num <= 0){
+            const objet = wormModel.getWorm().find((w) => (w.getPosition().x === i && w.getPosition().y === j ));
+            if (!objet){
+              this.food.reemplazePosition(new THREE.Vector3(i,j,0));
+              complete = true;
+            }
+          }
+        }
+      }
+    } while (!complete);
+
   }
 
   private generateNumber = (min: number, max: number) => { 
