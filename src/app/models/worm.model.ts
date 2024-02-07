@@ -9,51 +9,7 @@ export class WormModel{
 
 
   constructor(){
-    this.worm = [
-
-      new SquareModel({
-        material: MaterialEnum.BODY,
-        position: {
-          x: -5,
-          y: 0
-        }
-      }),
-      new SquareModel({
-        material: MaterialEnum.BODY,
-        position: {
-          x: -4,
-          y: 0
-        }
-      }),
-      new SquareModel({
-        material: MaterialEnum.BODY,
-        position: {
-          x: -3,
-          y: 0
-        }
-      }),
-      new SquareModel({
-        material: MaterialEnum.BODY,
-        position: {
-          x: -2,
-          y: 0
-        }
-      }),
-      new SquareModel({
-        material: MaterialEnum.BODY,
-        position: {
-          x: -1,
-          y: 0
-        }
-      }),
-      new SquareModel({
-        material: MaterialEnum.HEAD,
-        position: {
-          x: 0,
-          y: 0
-        }
-      }),
-    ]
+    this.initWorm();
   }
 
   private next = (worm: SquareModel[], i = 0) => {
@@ -111,7 +67,7 @@ export class WormModel{
       // this.worm[0].setMaterial(MaterialEnum.BODY);
     }
   }
-
+  
   public isCollision = (position: THREE.Vector3[]) => {
     const head = this.worm.find((w) => w.getMaterial() === MaterialEnum.HEAD);
     let collision = false;
@@ -121,6 +77,54 @@ export class WormModel{
       });
     }
     return collision;
+  }
+
+  public initWorm = () => {
+    this.worm = [
+
+      new SquareModel({
+        material: MaterialEnum.BODY,
+        position: {
+          x: -5,
+          y: 0
+        }
+      }),
+      new SquareModel({
+        material: MaterialEnum.BODY,
+        position: {
+          x: -4,
+          y: 0
+        }
+      }),
+      new SquareModel({
+        material: MaterialEnum.BODY,
+        position: {
+          x: -3,
+          y: 0
+        }
+      }),
+      new SquareModel({
+        material: MaterialEnum.BODY,
+        position: {
+          x: -2,
+          y: 0
+        }
+      }),
+      new SquareModel({
+        material: MaterialEnum.BODY,
+        position: {
+          x: -1,
+          y: 0
+        }
+      }),
+      new SquareModel({
+        material: MaterialEnum.HEAD,
+        position: {
+          x: 0,
+          y: 0
+        }
+      }),
+    ]
   }
 
   public getWorm = () => this.worm;

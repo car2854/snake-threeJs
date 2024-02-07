@@ -6,6 +6,7 @@ import { WallModel } from '../models/wall.model';
 import { MaterialEnum } from '../enum/material.enum';
 import { StatusGame } from '../enum/statusGame.enum';
 import { StatusGameInterface } from '../interface/statusGame';
+import { controls } from '../controller/input.controller';
 export class Draw{
   
   public static statusGame: StatusGameInterface = {
@@ -49,7 +50,7 @@ export class Draw{
     });
 
 
-    
+    this.foodModel.generateFood(this.wormModel);
     this.wormModel.getWorm().forEach((worm) => {
       this.scene.add( worm.cube );
     });
@@ -63,6 +64,8 @@ export class Draw{
 
 
   }
+
+
 
   public static draw = () => {
     
@@ -87,6 +90,8 @@ export class Draw{
             ...this.wormModel.getWorm().filter((worm) => worm.getMaterial() === MaterialEnum.BODY).map(_ => _.getPosition())
           ]
         )){
+          console.log('hay colision');
+          
           this.statusGame.status = StatusGame.GAMEOVER;
         }
   
@@ -95,5 +100,24 @@ export class Draw{
     }
 
     this.renderer.render( this.scene, this.camera );
+  }
+
+  public static restartGame = () => {
+    this.wormModel.initWorm();
+    this.foodModel.generateFood(this.wormModel);
+    this.scene.clear();
+    this.wormModel.getWorm().forEach((worm) => {
+      this.scene.add( worm.cube );
+    });
+
+    this.wallModel.getWall().forEach((wall) => {
+      this.scene.add( wall.cube );
+    });
+
+    this.scene.add(this.foodModel.food.cube);
+    controls[0] = 0;
+    controls[1] = 1;
+    controls[2] = 0;
+    controls[3] = 0;
   }
 }

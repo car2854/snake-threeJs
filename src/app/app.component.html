@@ -3,3 +3,10 @@
 <div class="game">
   <canvas #refCanvas width="600" height="600" id="canvas"></canvas>
 </div>
+
+@if (isGameOver()) {
+  <div class="game-over text-center">
+    <h1>Game Over</h1>
+    <button class="btn btn-primary" (click)="restartGame()">Reiniciar</button>
+  </div>
+}

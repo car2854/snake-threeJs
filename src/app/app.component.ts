@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import * as THREE from 'three';
 import { Draw } from './draw/draw';
 import { keyController } from './controller/input.controller';
+import { StatusGame } from './enum/statusGame.enum';
 
 @Component({
   selector: 'app-root',
@@ -31,5 +32,12 @@ export class AppComponent {
     keyController();
     
     Draw.draw();
+  }
+
+  public isGameOver = () => this.statusGame.status === StatusGame.GAMEOVER;
+
+  public restartGame = () => {
+    this.statusGame.status = StatusGame.RUN;
+    Draw.restartGame();
   }
 }
