@@ -1,0 +1,9 @@
+able = capaz
+ratio = relacion
+set up = configurar
+there = hay
+degrees = grados
+almost = casi
+near = far | cerca = lejos
+won't = no
+Next up = siguiente
