@@ -42,6 +42,7 @@ export class AppComponent {
 
   public restartGame = () => {
     this.statusGame.status = StatusGame.RUN;
+    this.statusGame.points = 0;
     Draw.restartGame();
   }
 }
