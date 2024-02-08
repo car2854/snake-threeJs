@@ -7,6 +7,7 @@ import { MaterialEnum } from '../enum/material.enum';
 import { StatusGame } from '../enum/statusGame.enum';
 import { StatusGameInterface } from '../interface/statusGame';
 import { controls } from '../controller/input.controller';
+import { globals } from '../globalsHola';
 export class Draw{
   
   public static statusGame: StatusGameInterface = {
@@ -74,7 +75,7 @@ export class Draw{
 
       this.time++;
 
-      if (this.time === 5){
+      if (this.time === globals.timeToMoveTheWorm){
         this.wormModel.moveWorm();
         this.time = 0;
         
@@ -82,7 +83,7 @@ export class Draw{
           this.wormModel.eating(this.foodModel.food.getPosition());
           this.scene.add(this.wormModel.getWorm()[0].cube);
           this.foodModel.generateFood(this.wormModel);
-          this.statusGame.points = this.statusGame.points + 10;
+          this.statusGame.points = this.statusGame.points + globals.pointsToAccumulate;
         }
         if (this.wormModel.isCollision(
           [
@@ -90,8 +91,6 @@ export class Draw{
             ...this.wormModel.getWorm().filter((worm) => worm.getMaterial() === MaterialEnum.BODY).map(_ => _.getPosition())
           ]
         )){
-          console.log('hay colision');
-          
           this.statusGame.status = StatusGame.GAMEOVER;
         }
   

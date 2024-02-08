@@ -1,4 +1,5 @@
 import { MaterialEnum } from "../enum/material.enum";
+import { globals } from "../globalsHola";
 import { SquareModel } from "./square.model";
 
 export class WallModel{
@@ -11,14 +12,14 @@ export class WallModel{
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: 15,
+          x: globals.width.max,
           y: i
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: 15,
+          x: globals.width.max,
           y: i * -1
         }
       }));
@@ -26,27 +27,27 @@ export class WallModel{
         material: MaterialEnum.WALL,
         position: {
           x: i,
-          y: 15
+          y: globals.height.max
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
           x: i * -1,
-          y: 15
+          y: globals.height.max
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: -15,
+          x: globals.width.min,
           y: i
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: -15,
+          x: globals.width.min,
           y: i * -1
         }
       }));
@@ -54,43 +55,43 @@ export class WallModel{
         material: MaterialEnum.WALL,
         position: {
           x: i,
-          y: -15
+          y: globals.height.min
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
           x: i * -1,
-          y: -15
+          y: globals.height.min
         }
       }));
 
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: 15,
-          y: 15
+          x: globals.width.max,
+          y: globals.height.max
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: -15,
-          y: 15
+          x: globals.width.min,
+          y: globals.height.max
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: 15,
-          y: -15
+          x: globals.width.max,
+          y: globals.height.min
         }
       }));
       this.wall.push(new SquareModel({
         material: MaterialEnum.WALL,
         position: {
-          x: -15,
-          y: -15
+          x: globals.width.min,
+          y: globals.height.min
         }
       }));
     }

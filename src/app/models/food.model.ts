@@ -3,12 +3,14 @@ import { SquareModel } from "./square.model";
 
 import * as THREE from 'three';
 import { WormModel } from "./worm.model";
+import { globals } from "../globalsHola";
 
 export class FoodModel{
   
   public food! : SquareModel;
 
   constructor(){
+
     this.food = new SquareModel({
       material: MaterialEnum.FOOD,
       position: {
@@ -18,15 +20,17 @@ export class FoodModel{
     });
   }
 
+
   public generateFood = (wormModel: WormModel) => {
-    // -14 ----- 14
-    let num = this.generateNumber(1,841);
+
+    
+    let num = this.generateNumber(1,globals.generationSpace);
     
     let complete = false;
-
+    
     do {
-      for (let i = -14; i <= 14 && !complete; i++) {
-        for (let j = -14; j <= 14 && !complete; j++) {
+      for (let i = globals.height.min + 1; i <= globals.height.max - 1 && !complete; i++) {
+        for (let j = globals.width.min + 1; j <= globals.width.max - 1 && !complete; j++) {
           num--;
           if (num <= 0){
             const objet = wormModel.getWorm().find((w) => (w.getPosition().x === i && w.getPosition().y === j ));
