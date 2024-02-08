@@ -40,6 +40,8 @@ export class Draw{
 
     // this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.renderer.setSize( data.canvas.width, data.canvas.height );
+
+    this.renderer.setClearColor(0x1a1a1a);
     
     this.camera.position.z = 22;
 

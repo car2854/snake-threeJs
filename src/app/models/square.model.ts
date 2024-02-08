@@ -20,19 +20,19 @@ export class SquareModel{
 
     switch (data.material) {
       case MaterialEnum.WALL:
-        color.color = new THREE.Color(0x2BEA3F);
+        color.color = new THREE.Color(0xc94c4c );
         break;
       case MaterialEnum.BODY:
-        color.color = new THREE.Color(0xFFF);
+        color.color = new THREE.Color(0x0066cc);
         break;  
       case MaterialEnum.HEAD:
-        color.color = new THREE.Color(0x66946B);
+        color.color = new THREE.Color(0x3399ff);
         break;
       case MaterialEnum.FOOD:
-        color.color = new THREE.Color(0xFF0000);
+        color.color = new THREE.Color(0xffcc66);
         break;
       case MaterialEnum.DIGESTION:
-        color.color = new THREE.Color(0x02056E);
+        color.color = new THREE.Color(0x004466);
         break;
       default:
         break;
@@ -63,19 +63,19 @@ export class SquareModel{
 
     switch (material) {
       case MaterialEnum.WALL:
-        this.cube.material.color.setHex(0x2BEA3F);
+        this.cube.material.color.setHex(0xc94c4c);
         break;
       case MaterialEnum.BODY:
-        this.cube.material.color.setHex(0xFFF);
+        this.cube.material.color.setHex(0x0066cc);
         break;  
       case MaterialEnum.HEAD:
-        this.cube.material.color.setHex(0x66946B);
+        this.cube.material.color.setHex(0x3399ff);
         break;
       case MaterialEnum.FOOD:
-        this.cube.material.color.setHex(0xFF0000);
+        this.cube.material.color.setHex(0xffcc66);
         break;
       case MaterialEnum.DIGESTION:
-        this.cube.material.color.setHex(0x02056E);
+        this.cube.material.color.setHex(0x00508a);
         break;
       default:
         break;
