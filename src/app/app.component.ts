@@ -35,6 +35,10 @@ export class AppComponent {
   }
 
   public isGameOver = () => this.statusGame.status === StatusGame.GAMEOVER;
+  
+  public isPauseGame = () => this.statusGame.status === StatusGame.PAUSE;
+
+  public startGame = () => this.statusGame.status = StatusGame.RUN;
 
   public restartGame = () => {
     this.statusGame.status = StatusGame.RUN;
